@@ -1,0 +1,83 @@
+<div class="container">
+
+  <div class="container-params">
+    <h4>Información para la matriz</h4>
+    <form class="params" (ngSubmit)="generateMatrix()" [formGroup]="methodsForm">
+      <div class="matrix-param">
+        <label class="form-label" for="email">Número de columnas</label>
+        <input type="text" pInputText formControlName="columns" />
+      </div>
+      
+      <div class="matrix-param">
+        <label class="form-label" for="email">Número de filas</label>
+        <input type="text" pInputText formControlName="rows" />
+      </div>
+      
+      <div class="matrix-param">
+        <label class="form-label" for="email">Alpha</label>
+        <input type="text" pInputText formControlName="alpha" />
+      </div>
+      
+      <div class="matrix-param">
+        <label class="form-label" for="email">Coeficiente</label>
+        <input type="text" pInputText formControlName="coefficient" />
+      </div>
+      
+      <div class="button-param">
+        <button pButton label="Llenar Matriz" type="submit"></button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="matrix-table">
+    <p-table [value]="matrix">
+      <ng-template pTemplate="header">
+          <tr>
+            <th id="i" *ngFor="let element of matrix[0], let i = index">
+              Columna de datos {{ i + 1 }}
+            </th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+        <tr>
+          <td *ngFor="let item of data">
+            {{item}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="button-options" *ngIf="matrix.length > 0">
+    <button class="p-button-success" pButton label="Laplace" type="button" (click)="callLaplaceFunction()"></button>
+    <button class="p-button-success" pButton label="Optimista" type="button" (click)="callOptimistFunction()"></button>
+    <button class="p-button-success" pButton label="Pesimista" type="button" (click)="callPesimistFunction()"></button>
+    <button class="p-button-success" pButton label="Hurwicz" type="button" (click)="callHurwiczFunction()"></button>
+    <button class="p-button-success" pButton label="Savage" type="button" (click)="callSavageFunction()"></button>
+    <p-progressSpinner *ngIf="submit" [style]="{width: '25px', height: '25px'}"></p-progressSpinner>
+  </div>
+
+  <p-dialog header="Resultado del metodo" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-table [value]="responseValue">
+      <ng-template pTemplate="header">
+          <tr>
+            <th id="title">
+              Valor esperado
+            </th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+        <tr>
+          <td>
+            {{data}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="display=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-dialog>
+
+</div>

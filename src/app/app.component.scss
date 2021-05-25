@@ -1,0 +1,38 @@
+.container {
+  width: auto;
+  margin-top: 50px;
+}
+
+.container-params {
+  margin-top: 50px;
+
+  h4 {
+    margin-bottom: 35px;
+  }
+}
+
+.params {
+  display: flex;
+  height: 100px;
+  min-width: 100%;
+}
+
+.matrix-param {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-param {
+  display: flex;
+  align-items: center;
+  width: 450px;
+}
+
+.button-options {
+  margin-top: 50px;
+
+  button {
+    margin-right: 10px;
+  }
+}
